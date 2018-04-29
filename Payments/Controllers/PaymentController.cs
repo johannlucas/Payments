@@ -27,7 +27,7 @@ namespace Payments.Controllers
             }
             catch (System.Exception ex)
             {
-                return Json(new { Status = "Erro", Message = ex.InnerException.Message });
+                return Json(new { Status = "Error", Message = ex.InnerException.Message });
             }
         }
 
@@ -65,7 +65,7 @@ namespace Payments.Controllers
             }
             catch (System.Exception ex)
             {
-                return Json(new { Status = "Erro", Message = ex.InnerException.Message });
+                return Json(new { Status = "Error", Message = ex.InnerException.Message });
             }
         }
 
@@ -82,7 +82,7 @@ namespace Payments.Controllers
             }
             catch (System.Exception ex)
             {
-                return Json(new { Status = "Erro", Message = ex.InnerException.Message });
+                return Json(new { Status = "Error", Message = ex.InnerException.Message });
             }
         }
     }
