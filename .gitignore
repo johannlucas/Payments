@@ -330,3 +330,5 @@ ASALocalRun/
 
 Payments/appsettings.json
 Payments/appsettings.Development.json
+
+*.sln
