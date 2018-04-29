@@ -18,10 +18,17 @@ namespace Payments.Controllers
         [Route("v1/payments")]
         public IActionResult Post([FromBody]Payment payment)
         {
-            _context.Payment.Add(payment);
-            _context.SaveChanges();
+            try
+            {
+                _context.Payment.Add(payment);
+                _context.SaveChanges();
 
-            return Ok();
+                return Ok();
+            }
+            catch (System.Exception ex)
+            {
+                return Json(new { Status = "Erro", Message = ex.InnerException.Message });
+            }
         }
 
         [HttpGet]
@@ -42,27 +49,41 @@ namespace Payments.Controllers
         [Route("v1/payments/{id}")]
         public IActionResult Put(int id, [FromBody]Payment payment)
         {
-            Payment _payment = _context.Payment.Find(id);
-            _payment.Title = payment.Title;
-            _payment.Amount = payment.Amount;
-            _payment.Paid = payment.Paid;
-            _payment.Comments = payment.Comments;
-            _payment.Payday = payment.Payday;
+            try
+            {
+                Payment _payment = _context.Payment.Find(id);
+                _payment.Title = payment.Title;
+                _payment.Amount = payment.Amount;
+                _payment.Paid = payment.Paid;
+                _payment.Comments = payment.Comments;
+                _payment.Payday = payment.Payday;
 
-            _context.Entry(_payment).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
-            _context.SaveChanges();
+                _context.Entry(_payment).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                _context.SaveChanges();
 
-            return Ok();
+                return Ok();
+            }
+            catch (System.Exception ex)
+            {
+                return Json(new { Status = "Erro", Message = ex.InnerException.Message });
+            }
         }
 
         [HttpDelete]
         [Route("v1/payments/{id}")]
         public IActionResult Delete(int id)
         {
-            _context.Payment.Remove(_context.Payment.Find(id));
-            _context.SaveChanges();
+            try
+            {
+                _context.Payment.Remove(_context.Payment.Find(id));
+                _context.SaveChanges();
 
-            return Ok();
+                return Ok();
+            }
+            catch (System.Exception ex)
+            {
+                return Json(new { Status = "Erro", Message = ex.InnerException.Message });
+            }
         }
     }
 }
